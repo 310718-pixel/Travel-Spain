@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西班牙 14 天精緻之旅 - Group 7</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            600: '#1d4ed8',
+                            800: '#1e3a8a',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 隱藏滾動條但保持功能 */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* 平滑滾動 */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen pb-16">
+
+    <!-- 頂部華麗橫幅 -->
+    <header class="relative h-[40vh] md:h-[50vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1600&q=80" alt="Spain" class="w-full h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-black/50"></div>
+        </div>
+        <div class="relative z-10 text-center px-4">
+            <span class="inline-block bg-amber-500/20 text-amber-400 border border-amber-500/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-widest mb-3">Group 7 Travel Itinerary</span>
+            <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white drop-shadow-md">西班牙情懷・14天漫遊之旅</h1>
+            <p class="mt-2 text-slate-300 text-sm md:text-base max-w-md mx-auto">瓦倫西亞 ➔ 哥多華 ➔ 巴塞隆納 | 10.01 - 10.14 行程計畫</p>
+        </div>
+    </header>
+
+    <!-- 主要內容區 -->
+    <main class="max-w-6xl mx-auto px-4 -mt-10 relative z-20">
+
+        <!-- 網頁快速導航頁籤 (Tab) -->
+        <div class="flex border-b border-slate-800 bg-slate-900/90 backdrop-blur-md rounded-t-xl overflow-hidden">
+            <button onclick="switchTab('itinerary')" id="tab-btn-itinerary" class="flex-1 py-4 text-center font-semibold text-sm transition-all border-b-2 border-blue-500 text-blue-400 bg-slate-900">
+                <i class="fa-solid fa-calendar-days mr-2"></i>每日詳細行程
+            </button>
+            <button onclick="switchTab('summary')" id="tab-btn-summary" class="flex-1 py-4 text-center font-semibold text-sm transition-all border-b-2 border-transparent text-slate-400 hover:text-slate-200">
+                <i class="fa-solid fa-list-check mr-2"></i>通關英文總表
+            </button>
+            <button onclick="switchTab('handy')" id="tab-btn-handy" class="flex-1 py-4 text-center font-semibold text-sm transition-all border-b-2 border-transparent text-slate-400 hover:text-slate-200">
+                <i class="fa-solid fa-suitcase mr-2"></i>實用工具與行李
+            </button>
+        </div>
+
+        <!-- 區塊一：每日詳細行程 -->
+        <section id="section-itinerary" class="bg-slate-900 p-4 md:p-6 rounded-b-xl border-x border-b border-slate-800">
+            
+            <!-- 天數快速選單 (橫向滾動) -->
+            <div class="mb-6">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3"><i class="fa-solid fa-route mr-1 text-blue-500"></i> 快速切換天數</h3>
+                <div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+                    <!-- Day 1 - 14 Button -->
+                    <button onclick="showDay(1)" id="day-btn-1" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-blue-600 text-white transition-all shadow-lg shadow-blue-900/30">Day 1</button>
+                    <button onclick="showDay(2)" id="day-btn-2" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Day 2</button>
+                    <button onclick="showDay(3)" id="day-btn-3" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Day 3</button>
+                    <button onclick="showDay(4)" id="day-btn-4" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Day 4</button>
+                    <button onclick="showDay(5)" id="day-btn-5" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Day 5</button>
+                    <button onclick="showDay(6)" id="day-btn-6" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Day 6</button>
+                    <button onclick="showDay(7)" id="day-btn-7" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Day 7</button>
+                    <button onclick="showDay(8)" id="day-btn-8" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Day 8</button>
+                    <button onclick="showDay(9)" id="day-btn-9" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Day 9</button>
+                    <button onclick="showDay(10)" id="day-btn-10" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Day 10</button>
+                    <button onclick="showDay(11)" id="day-btn-11" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Day 11</button>
+                    <button onclick="showDay(12)" id="day-btn-12" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Day 12</button>
+                    <button onclick="showDay(13)" id="day-btn-13" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Day 13</button>
+                    <button onclick="showDay(14)" id="day-btn-14" class="day-tab-btn shrink-0 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Day 14</button>
+                </div>
+            </div>
+
+            <!-- 每一天行程的容器 -->
+            <div id="day-content-area">
+
+                <!-- DAY 1 -->
+                <div id="day-section-1" class="day-content block space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=80" alt="桃園機場啟航" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded font-bold uppercase">Departure</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 1：桃園 ➔ 瓦倫西亞</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/1(四) | 移動方式：飛機、計程車</p>
+                        </div>
+                    </div>
+
+                    <!-- 垂直時間軸 -->
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <!-- 節點 1 -->
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-amber-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-amber-500 text-xs">
+                                <i class="fa-solid fa-plane-departure"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-amber-400">出發：前往桃園機場</h4>
+                            <p class="text-slate-400 text-sm mt-1">搭乘班機：桃園機場 ➔ 曼谷機場 ➔ 阿姆斯特丹史基浦機場</p>
+                            <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-coins mr-1"></i> 單人費用：機票 NT$ 27,454 (含回程)</p>
+                        </div>
+                        <!-- 節點 2 -->
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-blue-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-blue-500 text-xs">
+                                <i class="fa-solid fa-repeat"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-slate-200">轉機行程</h4>
+                            <p class="text-slate-400 text-sm mt-1">第一站轉機：曼谷 ➔ 第二站轉機：阿姆斯特丹 ➔ 前往瓦倫西亞</p>
+                        </div>
+                        <!-- 節點 3 -->
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-emerald-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-emerald-500 text-xs">
+                                <i class="fa-solid fa-plane-arrival"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-emerald-400">抵達瓦倫西亞</h4>
+                            <p class="text-slate-400 text-sm mt-1">預計於當地時間 10/2 凌晨 00:25 順利降落瓦倫西亞機場。</p>
+                            <div class="mt-3 bg-slate-800/80 p-3 rounded-lg border border-slate-700 text-sm inline-block">
+                                <span class="font-bold text-emerald-400"><i class="fa-solid fa-bed mr-1"></i> 當晚住宿：</span> 飛機上過夜
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 2 -->
+                <div id="day-section-2" class="day-content hidden space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1595844730298-b960ff98fee0?auto=format&fit=crop&w=1000&q=80" alt="Valencia Old Town" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-orange-600 text-white text-xs px-2 py-1 rounded font-bold">Valencia</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 2：瓦倫西亞・古城探索</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/2(五) | 移動方式：計程車、火車 (Sueca)</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-amber-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-amber-500 text-xs">
+                                <i class="fa-solid fa-taxi"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-amber-400">機場接駁與入住</h4>
+                            <p class="text-slate-400 text-sm mt-1">搭乘計程車約 14 分鐘，從瓦倫西亞機場前往飯店辦理入住手續並稍作歇息。</p>
+                            <div class="mt-3 bg-blue-950/50 p-3 rounded-lg border border-blue-800 text-sm">
+                                <span class="font-bold text-blue-400"><i class="fa-solid fa-hotel mr-1"></i> 點擊打開飯店計程車卡（給司機看）：</span>
+                                <button onclick="openTaxiCard('valencia')" class="block mt-1 font-bold text-white underline hover:text-blue-300 text-left text-base">
+                                    🏨 中央公園大理事飯店 (Senator Parque Central)
+                                </button>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-purple-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-purple-500 text-xs">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-slate-200">市區觀光與舊城區</h4>
+                            <p class="text-slate-400 text-sm mt-1">漫步於充滿歷史氛圍的 <a href="https://maps.google.com/?q=Valencia Old Town" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>瓦倫西亞舊城區</a>，欣賞獨特的巴洛克與哥德式建築。</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-red-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-red-500 text-xs">
+                                <i class="fa-solid fa-utensils"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-red-400">逛美食殿堂：中央市場</h4>
+                            <p class="text-slate-400 text-sm mt-1">朝聖歐洲最大、最美的鋼骨結構市集之一 —— <a href="https://maps.google.com/?q=Mercat Central de València" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>瓦倫西亞中央市場 (Mercado Central)</a>，品嚐新鮮水果與現切西班牙火腿。</p>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-coins mr-1"></i> 飯店花費：約 NT$ 2,875 / 晚</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 3 -->
+                <div id="day-section-3" class="day-content hidden space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=1000&q=80" alt="Ciutat de les Arts i les Ciències" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-orange-600 text-white text-xs px-2 py-1 rounded font-bold">Valencia</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 3：瓦倫西亞・前衛未來之城</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/3(六) | 移動方式：計程車</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-emerald-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-emerald-500 text-xs">
+                                <i class="fa-solid fa-tree"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-emerald-400">綠色之肺：圖里亞花園</h4>
+                            <p class="text-slate-400 text-sm mt-1">在著名的 <a href="https://maps.google.com/?q=Jardín del Turia" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>圖里亞公園 (Turia Garden)</a> 散步，此處由舊河道改建而成，是市民的樂活綠帶。</p>
+                            <p class="text-xs text-emerald-500 font-semibold mt-1">🎫 門票費用：免費</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-purple-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-purple-500 text-xs">
+                                <i class="fa-solid fa-flask"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-slate-200">藝術科學城</h4>
+                            <p class="text-slate-400 text-sm mt-1">搭乘計程車前往壯觀無比的 <a href="https://maps.google.com/?q=Ciutat de les Arts i les Ciències" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>藝術科學城 (City of Arts and Sciences)</a>，欣賞建築大師卡拉特拉瓦的極致白建築美學。</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-red-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-red-500 text-xs">
+                                <i class="fa-solid fa-utensils"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-red-400">午餐饗宴：經典海鮮燉飯</h4>
+                            <p class="text-slate-400 text-sm mt-1">預約了超人氣名店 <a href="https://maps.google.com/?q=Casa Carmela" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>Casa Carmela</a>，品嚐最正宗道地的瓦倫西亞柴燒烤海鮮飯 (Paella)。</p>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-coins mr-1"></i> 飯店花費：約 NT$ 2,875 / 晚</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 4 -->
+                <div id="day-section-4" class="day-content hidden space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1594821617415-ef6e6c4bd3f4?auto=format&fit=crop&w=1000&q=80" alt="Cordoba" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-yellow-600 text-white text-xs px-2 py-1 rounded font-bold">Cordoba</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 4：瓦倫西亞 ➔ 哥多華</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/4(日) | 移動方式：高速火車 (AVE)</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-blue-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-blue-500 text-xs">
+                                <i class="fa-solid fa-train"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-blue-400">搭乘西班牙高鐵 AVE</h4>
+                            <p class="text-slate-400 text-sm mt-1">從瓦倫西亞搭乘高速火車前往陽光明媚的安達魯西亞古城 —— 哥多華。</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-emerald-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-emerald-500 text-xs">
+                                <i class="fa-solid fa-chess-rook"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-emerald-400">基督教君主城堡</h4>
+                            <p class="text-slate-400 text-sm mt-1">參觀 <a href="https://maps.google.com/?q=Alcázar de los Reyes Cristianos" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>基督教君主城堡 (Alcázar)</a>，欣賞美麗的伊斯蘭庭園、繁茂的花卉與池塘。</p>
+                            <p class="text-xs text-emerald-400 font-semibold mt-1">🎫 門票費用：NT$ 175</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-red-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-red-500 text-xs">
+                                <i class="fa-solid fa-utensils"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-red-400">晚餐：Taberna Salinas 經典餐酒館</h4>
+                            <p class="text-slate-400 text-sm mt-1">在當地的老牌小酒館 <a href="https://maps.google.com/?q=Taberna Salinas Córdoba" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>Taberna Salinas</a>，享用經典哥多華燉牛尾與傳統冷湯。</p>
+                            <div class="mt-3 bg-blue-950/50 p-3 rounded-lg border border-blue-800 text-sm">
+                                <span class="font-bold text-blue-400"><i class="fa-solid fa-hotel mr-1"></i> 下榻飯店計程車卡：</span>
+                                <button onclick="openTaxiCard('cordoba')" class="block mt-1 font-bold text-white underline hover:text-blue-300 text-left text-base">
+                                    🏨 奧泰爾NH哥多華瓜達爾基維爾酒店 (Hesperia Córdoba)
+                                </button>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-coins mr-1"></i> 飯店花費：約 NT$ 2,316 / 晚</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 5 -->
+                <div id="day-section-5" class="day-content hidden space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1564344400581-2c069bc45fa4?auto=format&fit=crop&w=1000&q=80" alt="Mezquita de Cordoba" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-yellow-600 text-white text-xs px-2 py-1 rounded font-bold">Cordoba</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 5：哥多華・伊斯蘭光輝</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/5(一) | 移動方式：步行 (12 分鐘)</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-amber-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-amber-500 text-xs">
+                                <i class="fa-solid fa-mosque"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-amber-400">震撼心靈：哥多華主教座堂 (大清真寺)</h4>
+                            <p class="text-slate-400 text-sm mt-1">從飯店步行前進。參觀舉世聞名的紅白紅白相間拱門神殿 —— <a href="https://maps.google.com/?q=Mezquita-Catedral de Córdoba" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>哥多華主教座堂 (Mezquita)</a>，體會清真寺與大教堂融合的震撼魅力。</p>
+                            <p class="text-xs text-emerald-400 font-semibold mt-1">🎫 門票費用：學生優惠票 NT$ 440</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-blue-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-blue-500 text-xs">
+                                <i class="fa-solid fa-archway"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-slate-200">漫步古羅馬橋</h4>
+                            <p class="text-slate-400 text-sm mt-1">跨越瓜達爾基維爾河的歷史大橋 —— <a href="https://maps.google.com/?q=Puente Romano de Córdoba" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>羅馬橋 (Roman Bridge)</a>，傍晚在此捕捉夕陽照映金色古城牆的絕美景致。</p>
+                            <p class="text-xs text-emerald-500 font-semibold mt-1">🎫 門票費用：免費</p>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-coins mr-1"></i> 飯店花費：約 NT$ 2,316 / 晚</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 6 -->
+                <div id="day-section-6" class="day-content hidden space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1539650116574-8efeb43e2750?auto=format&fit=crop&w=1000&q=80" alt="Barcelona" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded font-bold">Barcelona</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 6：哥多華 ➔ 巴塞隆納</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/6(二) | 移動方式：火車 + 地鐵 (約 6.5 小時)</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-blue-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-blue-500 text-xs">
+                                <i class="fa-solid fa-route"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-blue-400">大移動：向加泰隆尼亞前進</h4>
+                            <p class="text-slate-400 text-sm mt-1">步行至 Puerta Del Puente，搭乘火車中轉、轉乘地鐵前往巴塞隆納，總車程大約 6 小時 37 分，沿途可欣賞西班牙內陸高原與海岸線交織的美景。</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-emerald-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-emerald-500 text-xs">
+                                <i class="fa-solid fa-hotel"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-emerald-400">入住巴塞隆納市中心</h4>
+                            <p class="text-slate-400 text-sm mt-1">抵達後辦理入住手續，調整好體力，準備迎接巴塞隆納的高第巡禮！</p>
+                            <div class="mt-3 bg-blue-950/50 p-3 rounded-lg border border-blue-800 text-sm">
+                                <span class="font-bold text-blue-400"><i class="fa-solid fa-hotel mr-1"></i> 巴塞隆納下榻飯店計程車卡（極推薦）：</span>
+                                <button onclick="openTaxiCard('barcelona')" class="block mt-1 font-bold text-white underline hover:text-blue-300 text-left text-base">
+                                    🏨 巴塞隆納西班牙廣場英迪格飯店 - IHG (Hotel Indigo Plaza Espana)
+                                </button>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-purple-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-purple-500 text-xs">
+                                <i class="fa-solid fa-store"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-slate-200">初探蘭布拉大道</h4>
+                            <p class="text-slate-400 text-sm mt-1">晚上漫步在熱鬧不凡的市中心 <a href="https://maps.google.com/?q=La Rambla Barcelona" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>蘭布拉大道 (La Rambla)</a>，感受地中海城市生生不息的熱情節奏。</p>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-coins mr-1"></i> 飯店花費：約 NT$ 4,142 / 晚</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 7 -->
+                <div id="day-section-7" class="day-content hidden space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1583778168172-ef9f61b369ba?auto=format&fit=crop&w=1000&q=80" alt="La Sagrada Familia" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded font-bold">Barcelona</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 7：巴塞隆納・聖家堂巨作</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/7(三) | 移動方式：火車 (約 20 分鐘)</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-amber-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-amber-500 text-xs">
+                                <i class="fa-solid fa-church"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-amber-400">上帝的物理學：聖家堂</h4>
+                            <p class="text-slate-400 text-sm mt-1">參觀高第傾盡一生的曠世巨作 —— <a href="https://maps.google.com/?q=La Sagrada Família" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>聖家堂 (Sagrada Família)</a>。那穿透彩繪玻璃的奇幻光芒與生命之樹的森林石柱絕對令人永生難忘。</p>
+                            <p class="text-xs text-emerald-400 font-semibold mt-1">🎫 門票費用：NT$ 1,064 (含中文語音導覽，不含登塔)</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-emerald-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-emerald-500 text-xs">
+                                <i class="fa-solid fa-tree"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-emerald-400">綠色悠閒：城堡公園與凱旋門</h4>
+                            <p class="text-slate-400 text-sm mt-1">隨後漫步至歷史悠久的 <a href="https://maps.google.com/?q=Parc de la Ciutadella" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>城堡公園 (Parc de la Ciutadella)</a> 體驗當地悠閒風情，並行經紅磚砌成的宏偉 <a href="https://maps.google.com/?q=Arc de Triomf Barcelona" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>凱旋門 (Arc de Triomf)</a> 拍照留念。</p>
+                            <p class="text-xs text-emerald-400 font-semibold mt-1">🎫 城堡公園門票：NT$ 843 | 凱旋門：免費</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-red-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-red-500 text-xs">
+                                <i class="fa-solid fa-utensils"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-red-400">晚餐：Abanik 巴塞隆納創意料理</h4>
+                            <p class="text-slate-400 text-sm mt-1">今晚在充滿現代設計氣氛的 <a href="https://maps.google.com/?q=Abanik Restaurant Barcelona" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>Abanik 餐廳</a>，享受融合了地中海風味與創意的精緻美食饗宴。</p>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-coins mr-1"></i> 飯店花費：約 NT$ 4,142 / 晚</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 8 -->
+                <div id="day-section-8" class="day-content hidden space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?auto=format&fit=crop&w=1000&q=80" alt="Casa Batllo" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded font-bold">Barcelona</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 8：巴塞隆納・擴建區奇想</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/8(四) | 移動方式：火車 (約 15 分鐘)</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-amber-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-amber-500 text-xs">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-amber-400">格拉西亞大道尋寶</h4>
+                            <p class="text-slate-400 text-sm mt-1">走訪時尚精華地帶 —— <a href="https://maps.google.com/?q=Passeig de Gràcia" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>格拉西亞大道 (Passeig de Gràcia)</a>，名牌旗艦店與摩登加泰隆尼亞建築林立兩側。</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-emerald-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-emerald-500 text-xs">
+                                <i class="fa-solid fa-house"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-emerald-400">深海童話：巴特略之家</h4>
+                            <p class="text-slate-400 text-sm mt-1">參觀高第以「喬治屠龍傳說」為發想設計的 <a href="https://maps.google.com/?q=Casa Batlló" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>巴特略之家 (Casa Batlló)</a>。繽紛的多彩陶瓷外牆和宛如海底世界的流線室內設計美得令人讚嘆。</p>
+                            <p class="text-xs text-emerald-400 font-semibold mt-1">🎫 門票費用：NT$ 1,380 (黃金優先門票)</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-red-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-red-500 text-xs">
+                                <i class="fa-solid fa-utensils"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-red-400">極致 Tapas：Quimet & Quimet</h4>
+                            <p class="text-slate-400 text-sm mt-1">在巴塞隆納立食天花板 <a href="https://maps.google.com/?q=Quimet %26 Quimet" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>Quimet & Quimet</a> 小酒館，享用招牌起司鮭魚佐松露蜜與精緻罐頭海鮮佐乾酪，風味極度濃厚迷人！</p>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-coins mr-1"></i> 飯店花費：約 NT$ 4,142 / 晚</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 9 -->
+                <div id="day-section-9" class="day-content hidden space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?auto=format&fit=crop&w=1000&q=80" alt="Picasso Museum" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded font-bold">Barcelona</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 9：巴塞隆納・大師藝術藝術之旅</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/9(五) | 移動方式：計程車 (17 分鐘)</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-purple-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-purple-500 text-xs">
+                                <i class="fa-solid fa-palette"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-purple-400">畢卡索博物館</h4>
+                            <p class="text-slate-400 text-sm mt-1">搭乘計程車前往造訪中世紀石宮殿改建的 <a href="https://maps.google.com/?q=Museu Picasso de Barcelona" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>畢卡索博物館 (Picasso Museum)</a> (早上 10:00 開館)，深入探究大師早期的天才創作畫作。</p>
+                            <p class="text-xs text-emerald-400 font-semibold mt-1">🎫 門票費用：未成年免費入場！</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-red-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-red-500 text-xs">
+                                <i class="fa-solid fa-utensils"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-red-400">百年老店午晚餐：Can Culleretes</h4>
+                            <p class="text-slate-400 text-sm mt-1">前往巴塞隆納歷史最古老的餐廳 —— <a href="https://maps.google.com/?q=Can Culleretes" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>Can Culleretes (創立於 1786 年)</a> 享用野豬肉、海鮮盤及傳統焦糖布丁 (Crema Catalana)。</p>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-coins mr-1"></i> 飯店花費：約 NT$ 4,142 / 晚</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 10 -->
+                <div id="day-section-10" class="day-content hidden space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1523531294919-4bea7c65e894?auto=format&fit=crop&w=1000&q=80" alt="Montjuic Castle" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded font-bold">Barcelona</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 10：巴塞隆納・城堡與廣場之美</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/10(六) | 移動方式：步行 4 分鐘 + 纜車</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-emerald-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-emerald-500 text-xs">
+                                <i class="fa-solid fa-chess-rook"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-emerald-400">俯瞰全城：蒙特惠奇城堡</h4>
+                            <p class="text-slate-400 text-sm mt-1">從市區搭乘景觀登山纜車直達山頂的 <a href="https://maps.google.com/?q=Castell de Montjuïc" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>蒙特惠奇城堡 (Montjuïc Castle)</a>，享受 360 度無死角海港與極佳的全城美景。</p>
+                            <p class="text-xs text-emerald-400 font-semibold mt-1">🎫 門票+纜車來回費用：NT$ 705 + 300 = 1,005</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-blue-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-blue-500 text-xs">
+                                <i class="fa-solid fa-archway"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-slate-200">歷史交點：西班牙廣場</h4>
+                            <p class="text-slate-400 text-sm mt-1">下山後漫步至宏偉的 <a href="https://maps.google.com/?q=Plaça d'Espanya Barcelona" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>西班牙廣場 (Plaza de España)</a>，仰望威尼斯雙塔並欣賞古典磅礴的大噴泉。</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-red-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-red-500 text-xs">
+                                <i class="fa-solid fa-utensils"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-red-400">漁港人氣小吃：Bar Jai-Ca</h4>
+                            <p class="text-slate-400 text-sm mt-1">在漁夫區超受歡迎的 <a href="https://maps.google.com/?q=Bar Jai-Ca Barcelona" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>Bar Jai-Ca</a>，大口暢飲桑格利亞水果酒 (Sangría) 搭配現炸小章魚與頂級蒜香辣蝦！</p>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-coins mr-1"></i> 飯店花費：約 NT$ 4,142 / 晚</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 11 -->
+                <div id="day-section-11" class="day-content hidden space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1523531294919-4bea7c65e894?auto=format&fit=crop&w=1000&q=80" alt="Park Guell" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded font-bold">Barcelona</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 11：巴塞隆納・糖果童話奇緣</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/11(日) | 移動方式：計程車 (20 分鐘)</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-emerald-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-emerald-500 text-xs">
+                                <i class="fa-solid fa-dragon"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-emerald-400">大自然雕塑：奎爾公園</h4>
+                            <p class="text-slate-400 text-sm mt-1">搭計程車前往拜訪經典的糖果屋與馬賽克磁磚彩色大蜥蜴 —— <a href="https://maps.google.com/?q=Park Güell" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>奎爾公園 (Park Güell)</a>，飽覽高第融合地形與奇特大自然曲線的夢幻花園空間。</p>
+                            <p class="text-xs text-emerald-400 font-semibold mt-1">🎫 門票費用：NT$ 804</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-red-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-red-500 text-xs">
+                                <i class="fa-solid fa-utensils"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-red-400">米其林推薦 Tapas：Paco Meralgo</h4>
+                            <p class="text-slate-400 text-sm mt-1">在深受當地老饕極力推崇的高檔海鮮小酒館 <a href="https://maps.google.com/?q=Paco Meralgo Barcelona" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>Paco Meralgo</a>，享用頂級竹蟶、酥炸櫛瓜花及頂級生鮮海產餐點。</p>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-coins mr-1"></i> 飯店花費：約 NT$ 4,142 / 晚</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 12 -->
+                <div id="day-section-12" class="day-content hidden space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1534008897995-27a23e859048?auto=format&fit=crop&w=1000&q=80" alt="La Boqueria" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded font-bold">Barcelona</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 12：巴塞隆納・食尚味蕾巡禮</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/12(一) | 移動方式：火車 (約 13 分鐘)</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-amber-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-amber-500 text-xs">
+                                <i class="fa-solid fa-store"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-amber-400">胃的胃天堂：博蓋利亞市場</h4>
+                            <p class="text-slate-400 text-sm mt-1">搭火車直達超高人氣、色彩斑斕的 <a href="https://maps.google.com/?q=Mercat de la Boqueria" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>博蓋利亞市場 (La Boqueria)</a>，在此品嚐當季鮮榨果汁與令人垂涎欲滴的生蠔和熟食。</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-red-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-red-500 text-xs">
+                                <i class="fa-solid fa-utensils"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-red-400">午晚餐：Tapas 24 潮人朝聖名店</h4>
+                            <p class="text-slate-400 text-sm mt-1">前往米其林星級主廚開設的超人氣排隊小館 —— <a href="https://maps.google.com/?q=Tapas 24 Barcelona" target="_blank" class="text-blue-400 underline font-semibold"><i class="fa-solid fa-location-dot mr-0.5"></i>Tapas 24</a>，大啖招牌松露鵝肝起司比基尼三明治與酥脆炸馬鈴薯 (Patatas Bravas)。</p>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-coins mr-1"></i> 飯店花費：約 NT$ 4,142 / 晚</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 13 -->
+                <div id="day-section-13" class="day-content hidden space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?auto=format&fit=crop&w=1000&q=80" alt="London Airport Duty Free" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-indigo-600 text-white text-xs px-2 py-1 rounded font-bold">Departure</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 13：巴塞隆納 ➔ 倫敦機場免稅店 ➔ 桃園</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/13(二) | 移動方式：計程車 + 飛機</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-amber-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-amber-500 text-xs">
+                                <i class="fa-solid fa-taxi"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-amber-400">退房與前往巴塞隆納機場</h4>
+                            <p class="text-slate-400 text-sm mt-1">使用 FreeNow APP 呼叫計程車前進巴塞隆納埃爾普拉特機場 (BCN)，準備辦理退稅手續與搭機手續。</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-blue-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-blue-500 text-xs">
+                                <i class="fa-solid fa-repeat"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-slate-200">過境英國：倫敦希斯洛機場 (LHR)</h4>
+                            <p class="text-slate-400 text-sm mt-1">過境倫敦希斯洛機場，在機場免稅店進行最後衝刺與伴手禮大掃貨！</p>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-coins mr-1"></i> 單人機票費用：NT$ 22,101</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-emerald-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-emerald-500 text-xs">
+                                <i class="fa-solid fa-moon"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-emerald-400">飛機上過夜</h4>
+                            <p class="text-slate-400 text-sm mt-1">在返台的萬呎高空長途班機中度過，回顧這趟璀璨浪漫的西班牙豐富旅程。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAY 14 -->
+                <div id="day-section-14" class="day-content hidden space-y-6">
+                    <div class="relative rounded-xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1000&q=80" alt="Taiwan Taoyuan" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded font-bold">Welcome Home</span>
+                            <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Day 14：返抵桃園機場</h2>
+                            <p class="text-slate-300 text-xs md:text-sm">日期：10/14(三) | 移動方式：飛機</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l border-slate-700 ml-4 md:ml-6 pl-6 md:pl-8 space-y-8 py-4">
+                        <div class="relative">
+                            <span class="absolute -left-[39px] md:-left-[47px] top-1 bg-slate-900 border-2 border-emerald-500 rounded-full p-1.5 w-8 h-8 flex items-center justify-center text-emerald-500 text-xs">
+                                <i class="fa-solid fa-house-chimney"></i>
+                            </span>
+                            <h4 class="text-base font-bold text-emerald-400">平安歸來！台灣桃園國際機場</h4>
+                            <p class="text-slate-400 text-sm mt-1">預計於下午 17:50 降落桃園國際機場，返回溫馨的家，結束難忘的西班牙經典之旅。</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 區塊二：英文版總表切換 -->
+        <section id="section-summary" class="hidden bg-slate-900 p-4 md:p-6 rounded-b-xl border-x border-b border-slate-800">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-lg md:text-xl font-bold text-white"><i class="fa-solid fa-list-check mr-2 text-blue-500"></i> 通關英文總行程表</h2>
+                    <p class="text-xs text-slate-400 mt-1">出境或通關時可點擊右側按鈕切換，秒變流暢全英文格式！</p>
+                </div>
+                <button onclick="toggleLanguage()" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-sm font-bold rounded-lg shadow-md transition-all">
+                    <span id="lang-btn-text">🔤 切換為英文版 (ENG)</span>
+                </button>
+            </div>
+
+            <div class="overflow-x-auto rounded-lg border border-slate-800">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-800 text-slate-300 text-xs font-bold uppercase tracking-wider">
+                            <th class="p-3 border-b border-slate-700">Date/Day</th>
+                            <th class="p-3 border-b border-slate-700">Region</th>
+                            <th class="p-3 border-b border-slate-700">Transit</th>
+                            <th class="p-3 border-b border-slate-700">Main Highlight</th>
+                            <th class="p-3 border-b border-slate-700">Accommodation</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm divide-y divide-slate-800 text-slate-300">
+                        <!-- 1 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/1(四) Day 1" data-en="Oct 1 (Thu) Day 1">10/1(四) Day 1</td>
+                            <td class="p-3" data-zh="桃園 -> 瓦倫西亞" data-en="TPE -> Valencia">桃園 -> 瓦倫西亞</td>
+                            <td class="p-3" data-zh="飛機 / 計程車" data-en="Flight / Taxi">飛機 / 計程車</td>
+                            <td class="p-3" data-zh="前往桃園機場、轉機(曼谷-阿姆斯特丹)" data-en="TPE Departure, transit in Bangkok & Amsterdam">前往桃園機場、轉機(曼谷-阿姆斯特丹)</td>
+                            <td class="p-3 text-emerald-400" data-zh="飛機上過夜" data-en="Overnight on Flight">飛機上過夜</td>
+                        </tr>
+                        <!-- 2 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/2(五) Day 2" data-en="Oct 2 (Fri) Day 2">10/2(五) Day 2</td>
+                            <td class="p-3" data-zh="瓦倫西亞" data-en="Valencia">瓦倫西亞</td>
+                            <td class="p-3" data-zh="計程車 / 火車" data-en="Taxi / Train">計程車 / 火車</td>
+                            <td class="p-3" data-zh="漫步舊城區、中央市場" data-en="Old Town Walk, Central Market">漫步舊城區、中央市場</td>
+                            <td class="p-3" data-zh="中央公園大理事飯店" data-en="Senator Parque Central Hotel">中央公園大理事飯店</td>
+                        </tr>
+                        <!-- 3 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/3(六) Day 3" data-en="Oct 3 (Sat) Day 3">10/3(六) Day 3</td>
+                            <td class="p-3" data-zh="瓦倫西亞" data-en="Valencia">瓦倫西亞</td>
+                            <td class="p-3" data-zh="計程車" data-en="Taxi">計程車</td>
+                            <td class="p-3" data-zh="圖里亞花園、藝術科學城、Casa Carmela 餐廳" data-en="Turia Garden, City of Arts and Sciences, Casa Carmela">圖里亞花園、藝術科學城、Casa Carmela 餐廳</td>
+                            <td class="p-3" data-zh="中央公園大理事飯店" data-en="Senator Parque Central Hotel">中央公園大理事飯店</td>
+                        </tr>
+                        <!-- 4 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/4(日) Day 4" data-en="Oct 4 (Sun) Day 4">10/4(日) Day 4</td>
+                            <td class="p-3" data-zh="瓦倫西亞 -> 哥多華" data-en="Valencia -> Cordoba">瓦倫西亞 -> 哥多華</td>
+                            <td class="p-3" data-zh="高速火車 (AVE)" data-en="High-speed Train (AVE)">高速火車 (AVE)</td>
+                            <td class="p-3" data-zh="基督教君主城堡、Taberna Salinas 餐廳" data-en="Alcazar of the Christian Monarchs, Taberna Salinas">基督教君主城堡、Taberna Salinas 餐廳</td>
+                            <td class="p-3" data-zh="奧泰爾NH哥多華瓜達爾基維爾" data-en="Hesperia Córdoba Hotel">奧泰爾NH哥多華瓜達爾基維爾</td>
+                        </tr>
+                        <!-- 5 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/5(一) Day 5" data-en="Oct 5 (Mon) Day 5">10/5(一) Day 5</td>
+                            <td class="p-3" data-zh="哥多華" data-en="Cordoba">哥多華</td>
+                            <td class="p-3" data-zh="步行" data-en="Walking">步行</td>
+                            <td class="p-3" data-zh="哥多華主教座堂 (清真寺)、羅馬橋" data-en="Mosque-Cathedral of Cordoba, Roman Bridge">哥多華主教座堂 (清真寺)、羅馬橋</td>
+                            <td class="p-3" data-zh="奧泰爾NH哥多華瓜達爾基維爾" data-en="Hesperia Córdoba Hotel">奧泰爾NH哥多華瓜達爾基維爾</td>
+                        </tr>
+                        <!-- 6 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/6(二) Day 6" data-en="Oct 6 (Tue) Day 6">10/6(二) Day 6</td>
+                            <td class="p-3" data-zh="哥多華 -> 巴塞隆納" data-en="Cordoba -> Barcelona">哥多華 -> 巴塞隆納</td>
+                            <td class="p-3" data-zh="火車 / 地鐵" data-en="Train / Metro">火車 / 地鐵</td>
+                            <td class="p-3" data-zh="抵達巴塞隆納、漫步蘭布拉大道" data-en="Arrive Barcelona, stroll La Rambla">抵達巴塞隆納、漫步蘭布拉大道</td>
+                            <td class="p-3" data-zh="巴塞羅那西班牙廣場英迪格飯店" data-en="Hotel Indigo Plaza Espana">巴塞羅那西班牙廣場英迪格飯店</td>
+                        </tr>
+                        <!-- 7 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/7(三) Day 7" data-en="Oct 7 (Wed) Day 7">10/7(三) Day 7</td>
+                            <td class="p-3" data-zh="巴塞隆納" data-en="Barcelona">巴塞隆納</td>
+                            <td class="p-3" data-zh="地鐵" data-en="Metro">地鐵</td>
+                            <td class="p-3" data-zh="聖家堂、城堡公園、凱旋門、Abanik 餐廳" data-en="Sagrada Familia, Ciutadella Park, Arc de Triomf">聖家堂、城堡公園、凱旋門、Abanik 餐廳</td>
+                            <td class="p-3" data-zh="巴塞羅那西班牙廣場英迪格飯店" data-en="Hotel Indigo Plaza Espana">巴塞羅那西班牙廣場英迪格飯店</td>
+                        </tr>
+                        <!-- 8 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/8(四) Day 8" data-en="Oct 8 (Thu) Day 8">10/8(四) Day 8</td>
+                            <td class="p-3" data-zh="巴塞隆納" data-en="Barcelona">巴塞隆納</td>
+                            <td class="p-3" data-zh="火車" data-en="Train">火車</td>
+                            <td class="p-3" data-zh="格拉西亞大道、巴特略之家、Quimet i Quimet 餐廳" data-en="Passeig de Gracia, Casa Batllo, Quimet & Quimet">格拉西亞大道、巴特略之家、Quimet i Quimet 餐廳</td>
+                            <td class="p-3" data-zh="巴塞羅那西班牙廣場英迪格飯店" data-en="Hotel Indigo Plaza Espana">巴塞羅那西班牙廣場英迪格飯店</td>
+                        </tr>
+                        <!-- 9 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/9(五) Day 9" data-en="Oct 9 (Fri) Day 9">10/9(五) Day 9</td>
+                            <td class="p-3" data-zh="巴塞隆納" data-en="Barcelona">巴塞隆納</td>
+                            <td class="p-3" data-zh="計程車" data-en="Taxi">計程車</td>
+                            <td class="p-3" data-zh="畢卡索博物館、Can Culleretes 百年餐廳" data-en="Picasso Museum, Can Culleretes Restaurant">畢卡索博物館、Can Culleretes 百年餐廳</td>
+                            <td class="p-3" data-zh="巴塞羅那西班牙廣場英迪格飯店" data-en="Hotel Indigo Plaza Espana">巴塞羅那西班牙廣場英迪格飯店</td>
+                        </tr>
+                        <!-- 10 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/10(六) Day 10" data-en="Oct 10 (Sat) Day 10">10/10(六) Day 10</td>
+                            <td class="p-3" data-zh="巴塞隆納" data-en="Barcelona">巴塞隆納</td>
+                            <td class="p-3" data-zh="步行 / 纜車" data-en="Walking / Cable Car">步行 / 纜車</td>
+                            <td class="p-3" data-zh="蒙特惠奇城堡、西班牙廣場、Bar Jai-Ca 餐廳" data-en="Montjuic Castle, Plaza Espana, Bar Jai-Ca">蒙特惠奇城堡、西班牙廣場、Bar Jai-Ca 餐廳</td>
+                            <td class="p-3" data-zh="巴塞羅那西班牙廣場英迪格飯店" data-en="Hotel Indigo Plaza Espana">巴塞羅那西班牙廣場英迪格飯店</td>
+                        </tr>
+                        <!-- 11 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/11(日) Day 11" data-en="Oct 11 (Sun) Day 11">10/11(日) Day 11</td>
+                            <td class="p-3" data-zh="巴塞隆納" data-en="Barcelona">巴塞隆納</td>
+                            <td class="p-3" data-zh="計程車" data-en="Taxi">計程車</td>
+                            <td class="p-3" data-zh="奎爾公園、Paco Meralgo 餐廳" data-en="Park Guell, Paco Meralgo Restaurant">奎爾公園、Paco Meralgo 餐廳</td>
+                            <td class="p-3" data-zh="巴塞羅那西班牙廣場英迪格飯店" data-en="Hotel Indigo Plaza Espana">巴塞羅那西班牙廣場英迪格飯店</td>
+                        </tr>
+                        <!-- 12 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/12(一) Day 12" data-en="Oct 12 (Mon) Day 12">10/12(一) Day 12</td>
+                            <td class="p-3" data-zh="巴塞隆納" data-en="Barcelona">巴塞隆納</td>
+                            <td class="p-3" data-zh="火車" data-en="Train">火車</td>
+                            <td class="p-3" data-zh="博蓋利亞市場、Tapas 24 餐廳" data-en="La Boqueria Market, Tapas 24 Restaurant">博蓋利亞市場、Tapas 24 餐廳</td>
+                            <td class="p-3" data-zh="巴塞羅那西班牙廣場英迪格飯店" data-en="Hotel Indigo Plaza Espana">巴塞羅那西班牙廣場英迪格飯店</td>
+                        </tr>
+                        <!-- 13 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/13(二) Day 13" data-en="Oct 13 (Tue) Day 13">10/13(二) Day 13</td>
+                            <td class="p-3" data-zh="巴塞隆納 -> 桃園" data-en="BCN -> TPE">巴塞隆納 -> 桃園</td>
+                            <td class="p-3" data-zh="計程車 / 飛機" data-en="Taxi / Flight">計程車 / 飛機</td>
+                            <td class="p-3" data-zh="巴塞隆納機場出發、倫敦機場轉機免稅店" data-en="BCN Departure, transit at London Heathrow Duty-free">巴塞隆納機場出發、倫敦機場轉機免稅店</td>
+                            <td class="p-3 text-emerald-400" data-zh="飛機上過夜" data-en="Overnight on Flight">飛機上過夜</td>
+                        </tr>
+                        <!-- 14 -->
+                        <tr class="hover:bg-slate-850">
+                            <td class="p-3 font-semibold text-slate-400" data-zh="10/14(三) Day 14" data-en="Oct 14 (Wed) Day 14">10/14(三) Day 14</td>
+                            <td class="p-3" data-zh="返抵桃園" data-en="TPE Arrival">返抵桃園</td>
+                            <td class="p-3" data-zh="飛機" data-en="Flight">飛機</td>
+                            <td class="p-3" data-zh="17:50 降落桃園機場" data-en="Arrive at TPE International Airport at 17:50">17:50 降落桃園機場</td>
+                            <td class="p-3 text-slate-500" data-zh="返家" data-en="Back Home">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 區塊三：工具、地圖、Checklist 與伴手禮 -->
+        <section id="section-handy" class="hidden space-y-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 自訂目的地 Google 地圖 (保留預設區塊) -->
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-map mr-2 text-blue-500"></i> 西班牙主要探索地圖</h3>
+                    <div class="aspect-video w-full rounded-lg overflow-hidden border border-slate-800">
+                        <!-- 後續可替換此 src 屬性為您的自訂 Google My Maps 或是特定的景點地圖 -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12328157.904832566!2d-8.81669480000001!3d40.463667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc42e3783261bc8f%3A0x6db3fd68c88fb72a!2z6KW_54-t54mZ!5e0!3m2!1szh-TW!2stw!4v1700000000000" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">提示：後續可自行於 HTML 程式碼中替換 iframe 的連結以呈現您的自訂景點圖。</p>
+                </div>
+
+                <!-- 行李 Checklist -->
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-list-check mr-2 text-blue-500"></i> 行李必備 Checklist</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="flex items-center space-x-2 text-sm text-slate-300">
+                            <input type="checkbox" checked class="rounded bg-slate-850 border-slate-700 text-blue-600 focus:ring-0">
+                            <span>護照 / 簽證與影本</span>
+                        </label>
+                        <label class="flex items-center space-x-2 text-sm text-slate-300">
+                            <input type="checkbox" checked class="rounded bg-slate-850 border-slate-700 text-blue-600 focus:ring-0">
+                            <span>申根保險證明</span>
+                        </label>
+                        <label class="flex items-center space-x-2 text-sm text-slate-300">
+                            <input type="checkbox" class="rounded bg-slate-850 border-slate-700 text-blue-600 focus:ring-0">
+                            <span>歐規轉接頭 (雙圓腳)</span>
+                        </label>
+                        <label class="flex items-center space-x-2 text-sm text-slate-300">
+                            <input type="checkbox" class="rounded bg-slate-850 border-slate-700 text-blue-600 focus:ring-0">
+                            <span>防盜隨身暗袋</span>
+                        </label>
+                        <label class="flex items-center space-x-2 text-sm text-slate-300">
+                            <input type="checkbox" class="rounded bg-slate-850 border-slate-700 text-blue-600 focus:ring-0">
+                            <span>網卡 / 漫遊開通</span>
+                        </label>
+                        <label class="flex items-center space-x-2 text-sm text-slate-300">
+                            <input type="checkbox" class="rounded bg-slate-850 border-slate-700 text-blue-600 focus:ring-0">
+                            <span>歐元現金 & 信用卡</span>
+                        </label>
+                        <label class="flex items-center space-x-2 text-sm text-slate-300">
+                            <input type="checkbox" class="rounded bg-slate-850 border-slate-700 text-blue-600 focus:ring-0">
+                            <span>好穿好走的運動鞋</span>
+                        </label>
+                        <label class="flex items-center space-x-2 text-sm text-slate-300">
+                            <input type="checkbox" class="rounded bg-slate-850 border-slate-700 text-blue-600 focus:ring-0">
+                            <span>常備藥品 & 保濕</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 伴手禮推薦 -->
+            <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-gift mr-2 text-blue-500"></i> 西班牙必買與推薦伴手禮</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800">
+                        <span class="text-2xl">🍯</span>
+                        <h4 class="font-bold text-white mt-2">1. 瓦倫西亞蜂蜜洋甘菊茶</h4>
+                        <p class="text-xs text-slate-400 mt-1">Hornimans 特色茶品，洋甘菊香氣怡人，伴手禮高CP首選。</p>
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800">
+                        <span class="text-2xl">🫒</span>
+                        <h4 class="font-bold text-white mt-2">2. La Chinata 特級初榨橄欖油保養品</h4>
+                        <p class="text-xs text-slate-400 mt-1">來自西班牙著名橄欖產地，精油香皂與護唇膏極受歡迎。</p>
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800">
+                        <span class="text-2xl">🍫</span>
+                        <h4 class="font-bold text-white mt-2">3. Valor 傳統精緻巧克力</h4>
+                        <p class="text-xs text-slate-400 mt-1">西班牙國民級百年巧克力品牌，濃郁純粹、送禮自用皆宜。</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- 底部版權 -->
+    <footer class="mt-16 text-center text-xs text-slate-600 px-4">
+        <p>© 2026 Spain Travel Plan. Generated with ❤️ for Group 7.</p>
+    </footer>
+
+    <!-- 計程車地址彈出視窗 (Modal) -->
+    <div id="taxi-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+            <button onclick="closeTaxiCard()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="text-center">
+                <span class="inline-block bg-blue-600/20 text-blue-400 border border-blue-500/30 px-3 py-1 rounded-full text-xs font-bold mb-3"><i class="fa-solid fa-taxi mr-1"></i>給計程車司機的地址卡</span>
+                <h3 id="modal-hotel-name" class="text-lg font-bold text-white">飯店名稱</h3>
+                <p class="text-xs text-slate-400 mt-1">Por favor, lléveme a esta dirección: (請帶我前往此地址)</p>
+                
+                <!-- 大字體西文地址展示區 -->
+                <div class="my-6 bg-slate-950 p-5 rounded-xl border border-slate-800">
+                    <p id="modal-hotel-address-es" class="text-2xl font-black text-amber-400 tracking-wide leading-relaxed">西班牙地址加載中...</p>
+                </div>
+
+                <div class="text-left text-xs text-slate-400 space-y-1 bg-slate-850 p-3 rounded-lg">
+                    <p><strong>💡 實用西班牙語：</strong></p>
+                    <p>• Hola (歐拉) - 你好</p>
+                    <p>• Gracias (格拉西亞斯) - 謝謝</p>
+                    <p>• ¿Cuánto cuesta? (寬多 奎斯塔?) - 多少錢？</p>
+                </div>
+                
+                <button onclick="closeTaxiCard()" class="mt-5 w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all">
+                    關閉視窗 (Close)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 核心互動 JavaScript 代碼 -->
+    <script>
+        // 飯店資料庫 (西語地址與名稱)
+        const hotelData = {
+            valencia: {
+                name: "中央公園大理事飯店 (Senator Parque Central Hotel)",
+                addressEs: "Plaza Manuel Sanchis Guarner, 1, 46006 Valencia, España"
+            },
+            cordoba: {
+                name: "奧泰爾NH哥多華瓜達爾基維爾酒店 (Hesperia Córdoba)",
+                addressEs: "Avenida Fray Albino, 1, 14009 Córdoba, España"
+            },
+            barcelona: {
+                name: "巴塞羅那西班牙廣場英迪格飯店 (Hotel Indigo Plaza Espana)",
+                addressEs: "Plaza de España, 6-8, Sants-Montjuïc, 08014 Barcelona, España"
+            }
+        };
+
+        // 頁籤切換邏輯
+        function switchTab(tabName) {
+            const sections = ['itinerary', 'summary', 'handy'];
+            sections.forEach(sec => {
+                const element = document.getElementById(`section-${sec}`);
+                const tabBtn = document.getElementById(`tab-btn-${sec}`);
+                
+                if (sec === tabName) {
+                    element.classList.remove('hidden');
+                    tabBtn.classList.add('border-blue-500', 'text-blue-400', 'bg-slate-900');
+                    tabBtn.classList.remove('border-transparent', 'text-slate-400');
+                } else {
+                    element.classList.add('hidden');
+                    tabBtn.classList.remove('border-blue-500', 'text-blue-400', 'bg-slate-900');
+                    tabBtn.classList.add('border-transparent', 'text-slate-400');
+                }
+            });
+        }
+
+        // 行程天數切換
+        function showDay(dayNum) {
+            // 隱藏所有天數的區塊內容
+            const daySections = document.querySelectorAll('.day-content');
+            daySections.forEach(sec => sec.classList.add('hidden'));
+
+            // 顯示指定天數的區塊
+            const targetSection = document.getElementById(`day-section-${dayNum}`);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            // 更新按鈕樣式
+            const buttons = document.querySelectorAll('.day-tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-900/30');
+                btn.classList.add('bg-slate-800', 'text-slate-300', 'hover:bg-slate-700');
+            });
+
+            const activeBtn = document.getElementById(`day-btn-${dayNum}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-slate-800', 'text-slate-300', 'hover:bg-slate-700');
+                activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-900/30');
+                
+                // 自動滾動選單到當前按鈕位置
+                activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        }
+
+        // 開啟計程車卡彈窗
+        function openTaxiCard(hotelKey) {
+            const modal = document.getElementById('taxi-modal');
+            const hotelName = document.getElementById('modal-hotel-name');
+            const hotelAddress = document.getElementById('modal-hotel-address-es');
+            
+            const hotel = hotelData[hotelKey];
+            if (hotel) {
+                hotelName.textContent = hotel.name;
+                hotelAddress.textContent = hotel.addressEs;
+                modal.classList.remove('hidden');
+            }
+        }
+
+        // 關閉計程車卡彈窗
+        function closeTaxiCard() {
+            document.getElementById('taxi-modal').classList.add('hidden');
+        }
+
+        // 英文總表的中英翻譯一秒切換
+        let currentLang = 'zh';
+        function toggleLanguage() {
+            const tableCells = document.querySelectorAll('[data-zh]');
+            const langBtnText = document.getElementById('lang-btn-text');
+            
+            if (currentLang === 'zh') {
+                // 切換為英文
+                tableCells.forEach(cell => {
+                    cell.textContent = cell.getAttribute('data-en');
+                });
+                langBtnText.textContent = "🇨🇳 切換為中文版 (ZH)";
+                currentLang = 'en';
+            } else {
+                // 切換為中文
+                tableCells.forEach(cell => {
+                    cell.textContent = cell.getAttribute('data-zh');
+                });
+                langBtnText.textContent = "🔤 切換為英文版 (ENG)";
+                currentLang = 'zh';
+            }
+        }
+    </script>
+</body>
+</html>
